@@ -113,7 +113,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         ? undefined
         : {
             '/api': {
-              target: '',
+              target: 'http://localhost:9999',
               ws: false,
               changeOrigin: true,
             },

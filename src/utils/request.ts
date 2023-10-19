@@ -63,7 +63,14 @@ request.interceptors.request.use(requestHandler, errorHandler)
 
 // 响应拦截器
 const responseHandler = (response: { data: any }) => {
-  return response.data
+  if (response.data.code !== 200) {
+    showNotify({
+      type: 'danger',
+      message: response.data.message,
+    })
+    throw new Error('业务异常', { cause: response.data.defaultMessage })
+  }
+  return response.data.data
 }
 
 // Add a response interceptor

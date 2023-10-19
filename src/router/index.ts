@@ -12,8 +12,28 @@ NProgress.configure({ showSpinner: true, parent: '#app' })
 // 定义路由，每个路由都需要映射到一个组件
 const routes = [
   {
-    path: '/',
-    name: 'main',
+    path: '/:tenantCode/:deptId',
+    name: 'home',
+    component: () => import('../views/home.vue'),
+  },
+  {
+    path: '/project',
+    name: 'project',
+    component: () => import('../views/project/index.vue'),
+  },
+  {
+    path: '/organization',
+    name: 'organization',
+    component: () => import('../views/organization/index.vue'),
+  },
+  {
+    path: '/person',
+    name: 'person',
+    component: () => import('../views/person/index.vue'),
+  },
+  {
+    path: '/mian',
+    name: 'mian',
     component: mian,
   },
   {

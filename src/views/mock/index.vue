@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { queryProse } from '@/api'
+// import { queryProse } from '@/api'
 
 const messages = ref<string>('')
 
 const pull = () => {
-  queryProse().then((res) => {
-    messages.value = res.prose
-  })
+  // queryProse().then((res) => {
+  //   messages.value = res.prose
+  // })
 }
 
 // reset data
