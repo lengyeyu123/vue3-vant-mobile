@@ -16,8 +16,6 @@ const refreshing = ref(false)
 const onLoad = () => {
   // 用户唯一标识
   const userUniqueId = localStorage.getItem('userUniqueId')
-  if (!userUniqueId)
-    localStorage.setItem('userUniqueId', getUUID(20))
 
   // 是否处于加载状态
   refreshing.value = true

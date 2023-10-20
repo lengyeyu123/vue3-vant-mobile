@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { showConfirmDialog, showFailToast } from 'vant'
 import { loginPostList } from '@/api'
+import { getUUID } from '@/utils/UUID'
+import { getLoginPost } from '@/utils/vote'
 
 const deptName = ref('')
 const loginPostName = ref()
@@ -40,7 +42,12 @@ const noBomBox = () => {
   document.activeElement?.blur()
 }
 
+let newLoginPost = true
 const onConfirm = ({ selectedOptions, selectedIndexes }) => {
+  const loginPost = getLoginPost()
+  if (loginPost && loginPost.id === selectedOptions[0].value)
+    newLoginPost = false
+
   loginPostName.value = selectedOptions[0].text
   localStorage.setItem('loginPost', JSON.stringify(loginPostArr[selectedIndexes[0]]))
   showPicker.value = false
@@ -51,6 +58,10 @@ const handleSubmit = () => {
     title: '确认职位选择',
     message: `请再次确认您的职位是否为${loginPostName.value}`,
   }).then(() => {
+    // 用户唯一标识
+    if (newLoginPost)
+      localStorage.setItem('userUniqueId', getUUID(20))
+
     push('/project')
   })
 }
